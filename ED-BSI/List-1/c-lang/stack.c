@@ -3,47 +3,48 @@
 #include <stdbool.h>
 #include "stack.h"
 
-struct Stack {
-    int maxSize;
+struct stack {
+    int capacity;
     int top;
     int *items;
 };
 
-stack make_stack(int capacity)
+Stack *make_stack(int capacity)
 {
-    stack s = (stack)malloc(sizeof(struct Stack));
+    Stack *s = (Stack *)malloc(sizeof(Stack));
     if (s == NULL) {
         return NULL;
     }
 
-    s->maxSize = capacity;
+    s->capacity = capacity;
     s->top = -1;
     s->items = (int *)malloc(sizeof(int) * capacity);
 
     return s;
 }
 
-void destroy_stack(stack s)
+void destroy_stack(Stack *s)
 {
+    free(s->items);
     free(s);
 }
 
-int size(const stack s)
+int size(const Stack *s)
 {
     return s->top+1;
 }
 
-bool is_empty(const stack s)
+bool is_empty(const Stack *s)
 {
     return size(s)==0;
 }
 
-bool is_full(const stack s)
+bool is_full(const Stack *s)
 {
-    return size(s)>=s->maxSize;
+    return size(s)>=s->capacity;
 }
 
-bool push(stack s, int value)
+bool push(Stack *s, int value)
 {
     if (is_full(s))
     {
@@ -55,7 +56,7 @@ bool push(stack s, int value)
     return true;
 }
 
-int peek(stack s)
+int peek(Stack *s)
 {
     if (is_empty(s)) {
         printf("The stack is empty\n");
@@ -65,7 +66,7 @@ int peek(stack s)
     return s->items[s->top];
 }
 
-int pop(stack s)
+int pop(Stack *s)
 {
     if (is_empty(s)) {
         printf("The stack is empty\n");
@@ -75,7 +76,7 @@ int pop(stack s)
     return s->items[s->top--];
 }
 
-void make_empty(stack s)
+void make_empty(Stack *s)
 {
     if (is_empty(s)) return;
     s->top = -1;

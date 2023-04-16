@@ -16,12 +16,12 @@
 #define CORRECT_FORMAT " is in the correct format.\n"
 #define IS_AB(c) (c == 'A' || c == 'B')
 
-bool verify_string(char string[], stack s);
+bool verify_string(char string[], Stack *s);
 
 int main()
 {
     // Tries to allocate space in memory for this stack.
-    stack s = make_stack(MAX_STACK);
+    Stack *s = make_stack(MAX_STACK);
     if (s == NULL) {
         printf("Couldn't allocate stack.");
         return 1;
@@ -46,7 +46,7 @@ ULONG str_len(char string[])
 }
 
 // Verify if the string is in the proposed format xCy, where y is the mirror of x.
-bool verify_string(char string[], stack s)
+bool verify_string(char string[], Stack *s)
 {
     ULONG len = str_len(string);
     // If length of the string is not an even value, then it cannot be on the format xCy.

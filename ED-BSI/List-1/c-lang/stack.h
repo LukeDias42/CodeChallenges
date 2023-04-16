@@ -3,15 +3,15 @@
 
 #include <stdbool.h>
 
-typedef struct Stack *stack;
+typedef struct stack Stack;
 
-stack make_stack(int capacity);
-void destroy_stack(stack s);
-bool is_empty(const stack s);
-bool is_full(const stack s);
-void make_empty(stack s);
-bool push(stack s, int value);
-int peek(stack s);
-int pop(stack s);
+Stack *make_stack(int capacity);
+void destroy_stack(Stack *s);
+bool is_empty(const Stack *s);
+bool is_full(const Stack *s);
+void make_empty(Stack *s);
+bool push(Stack *s, int value);
+int peek(Stack *s);
+int pop(Stack *s);
 
 #endif

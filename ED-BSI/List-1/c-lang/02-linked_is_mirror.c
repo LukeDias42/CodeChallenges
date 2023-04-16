@@ -19,11 +19,11 @@
 #define IS_AB(c) (c == 'A' || c == 'B')
 
 ULONG str_len(char string[]);
-bool verify_string(char string[], stack s, int start, int end);
+bool verify_string(char string[], Stack *s, int start, int end);
 
 int main()
 {
-    stack s = make_stack(MAX_STACK);
+    Stack *s = make_stack(MAX_STACK);
     if (s == NULL) {
         printf("Couldn't allocate stack.");
         return 1;
@@ -55,7 +55,7 @@ int main()
 
 // Updated verify string to receive the start and end of the substring that is being verified.
 // This version would also work on the previous exercise, where start = 0 and end = len - 1;
-bool verify_string(char string[], stack s, int start, int end)
+bool verify_string(char string[], Stack *s, int start, int end)
 {
     // The length of the substring is the distance from the start character to the end character
     // of that substring.
