@@ -4,6 +4,8 @@
  * A good thing about this solution is that it is easily scalable to many instances of a stack inside one stack.
  * Instead of having top 1 and top 2, you would have an array tops, each containing the current top.
  * Each would have the same capacity, so it would be easy to verify if it is empty or full.
+ * For a more generic implementation, see the file 3-01-multi_stack.c.
+ * PS. It is not a good practice to have the typedef as a pointer, since it can become confusing.
  * */
 
 #include <stdio.h>
@@ -76,6 +78,7 @@ stack make_stack(int capacity)
 
 void destroy_stack(stack s)
 {
+    free(s->items);
     free(s);
 }
 
