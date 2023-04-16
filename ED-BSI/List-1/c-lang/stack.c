@@ -75,3 +75,8 @@ int pop(stack s)
     return s->items[s->top--];
 }
 
+void make_empty(stack s)
+{
+    if (is_empty(s)) return;
+    s->top = -1;
+}
