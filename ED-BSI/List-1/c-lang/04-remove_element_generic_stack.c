@@ -37,6 +37,7 @@ int main()
         printf("  %d\n", *n);
     }
 
+    destroy_stack(stack);
     return 0;
 }
 

@@ -19,12 +19,14 @@ int main()
 
     if (get_line(str, MAX_STRING_SIZE) <= 0) {
         printf("Empty string.\n");
+        destroy_stack(stack);
         return 0;
     }
 
     revert_words(str, stack);
     printf("%s\n", str);
 
+    destroy_stack(stack);
     return 0;
 }
 

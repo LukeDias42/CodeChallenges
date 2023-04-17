@@ -27,6 +27,7 @@ int main()
 
     printf("%s", verify_string(str, s) ? CORRECT_BALANCE : INCORRECT_BALANCE);
 
+    destroy_stack(s);
     return 0;
 }
 

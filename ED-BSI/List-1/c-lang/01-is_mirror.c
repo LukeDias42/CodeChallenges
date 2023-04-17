@@ -33,6 +33,7 @@ int main()
     bool result = verify_string(str, s);
     printf("%s%s",str, result ? CORRECT_FORMAT : INCORRECT_FORMAT);
 
+    destroy_stack(s);
     return 0;
 }
 

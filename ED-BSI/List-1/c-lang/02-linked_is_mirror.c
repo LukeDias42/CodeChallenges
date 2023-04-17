@@ -39,17 +39,20 @@ int main()
             if (!result) { 
                 // If any of the substrings are incorrect, then the whole string is incorrect.
                 printf("%s%s",str, INCORRECT_FORMAT);
+                destroy_stack(s);
                 return 0;
             }
             // The next start index starts after the 'D' character;
             start = i+1;
         }
     }
+
     // The final substring is not followed by a 'D' character on the specified format, 
     // therefore a last check must be made.
     bool finalResult = verify_string(str, s, start, i-1);
     printf("%s%s",str, finalResult ? CORRECT_FORMAT : INCORRECT_FORMAT);
 
+    destroy_stack(s);
     return 0;
 }
 
