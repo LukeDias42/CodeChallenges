@@ -14,3 +14,4 @@ Then you can run the result using:
 ``` bash
 ./[name_of_the_build].out
 ```
+Also, you might have to use the node_stack.c too, it follows the same idea.
