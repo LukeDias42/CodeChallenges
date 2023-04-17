@@ -18,7 +18,7 @@ struct Stack {
     int max_size;
     int top1;
     int top2;
-    int *items;
+    long int *items;
 };
 
 typedef struct Stack *stack;
@@ -28,9 +28,9 @@ void destroy_stack(stack s);
 bool is_empty(const stack s, int stack_index);
 bool is_full(const stack s, int stack_index);
 void make_empty(stack s, int stack_index);
-bool push(stack s, int value, int stack_index);
-int peek(stack s, int stack_index);
-int pop(stack s, int stack_index);
+bool push(stack s, long int value, int stack_index);
+long int peek(stack s, int stack_index);
+long int pop(stack s, int stack_index);
 
 int main()
 {
@@ -71,7 +71,7 @@ stack make_stack(int capacity)
     s->max_size = capacity;
     s->top1 = -1;
     s->top2 = -1;
-    s->items = (int *)malloc(sizeof(int)*capacity);
+    s->items = (long int *)malloc(sizeof(long int)*capacity);
 
     return s;
 }
@@ -104,7 +104,7 @@ void make_empty(stack s, int stack_index)
     }
 }
 
-bool push(stack s, int value, int stack_index)
+bool push(stack s, long int value, int stack_index)
 {
     if (is_full(s, stack_index)) {
         return false;
@@ -120,7 +120,7 @@ bool push(stack s, int value, int stack_index)
     return true;
 }
 
-int peek(stack s, int stack_index)
+long int peek(stack s, int stack_index)
 {
     if (is_empty(s, stack_index)) {
         printf("The stack %d is empty.\n", stack_index);
@@ -135,7 +135,7 @@ int peek(stack s, int stack_index)
     }
 }
 
-int pop(stack s, int stack_index)
+long int pop(stack s, int stack_index)
 {
     if (is_empty(s, stack_index)) {
         printf("The stack %d is empty.\n", stack_index);

@@ -1,3 +1,14 @@
+/* This is a more complex exercise where you have to use stakcs in order to create a interpreter for a simple infix calculator.
+ * The calculator only accepts the basic operators +, -, /, *, and it is completely paranthesized, which means that you
+ * do not have to worry about precedences when dealing with the operators.
+ * To do this, two stacks where created (this could be a great place to apply the substack of previous exercises),
+ * the operands stack and operators stack. When a digit is found inside the array, a number is created and addded to the operands,
+ * when a closing parenthesis is found it processes the last two numbers with the last operator, and it keeps doing that until
+ * a closing parenthesis is found. 
+ * More operations could easily be added, like ^ for pow, l for log, etc. 
+ * Or by allowing for string operators instead of characters, which could be achieved by using the generic stack.
+ * */
+
 #include <stdio.h>
 #include <ctype.h>
 #include <stdlib.h>
@@ -86,9 +97,9 @@ long int evaluate_expression(char expression[], Stack *operators, Stack *operand
         else if (c == ')') {
             char op = pop(operators);
             while (op != '(') {
-                long b = pop(operands);
-                long a = pop(operands);
-                long result = operate(op, a, b);
+                long int b = pop(operands);
+                long int a = pop(operands);
+                long int result = operate(op, a, b);
                 push(operands, result);
                 op = pop(operators);
             }

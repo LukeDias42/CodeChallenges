@@ -14,7 +14,7 @@ typedef struct stack {
     int stacks;
     int size;
     int *tops;
-    int *items;
+    long int *items;
 } Stack;
 
 
@@ -23,9 +23,9 @@ void destroy_stack(Stack *s);
 bool is_empty(const Stack *s, int stack_index);
 bool is_full(const Stack *s, int stack_index);
 void make_empty(Stack *s, int stack_index);
-bool push(Stack *s, int value, int stack_index);
-int peek(Stack *s, int stack_index);
-int pop(Stack *s, int stack_index);
+bool push(Stack *s, long int value, int stack_index);
+long int peek(Stack *s, int stack_index);
+long int pop(Stack *s, int stack_index);
 
 int main()
 {
@@ -76,7 +76,7 @@ Stack *make_stack(int capacity, int stacks)
     for (int i = 0; i < stacks; i++) {
         s->tops[i] = -1;
     }
-    s->items = (int *)malloc(sizeof(int)*capacity*stacks);
+    s->items = (long int *)malloc(sizeof(long int)*capacity*stacks);
 
     return s;
 }
@@ -124,7 +124,7 @@ void make_empty(Stack *s, int stack_index)
 // the top value of that substack + 1, plus the size of a substack * which position is the substack in.
 // For instance, the substack 0 starts at 0, so it is just the top + 1;
 // While the substack 1 of a list of substacks with size 5, starts at the index 5 * 1, so it is top + 1 + 5;
-bool push(Stack *s, int value, int stack_index)
+bool push(Stack *s, long int value, int stack_index)
 {
     if (is_full(s, stack_index)) {
         return false;
@@ -137,7 +137,7 @@ bool push(Stack *s, int value, int stack_index)
 
 // If the substack is not empty, shows the value of its top.
 // Follows the same idea of push, but does not change the value of top.
-int peek(Stack *s, int stack_index)
+long int peek(Stack *s, int stack_index)
 {
     if (is_empty(s, stack_index)) {
         printf("The stack %d is empty.\n", stack_index);
@@ -148,7 +148,7 @@ int peek(Stack *s, int stack_index)
 }
 
 // If the substack is not empty, shows the value of its top and removes it from the substack.
-int pop(Stack *s, int stack_index)
+long int pop(Stack *s, int stack_index)
 {
     if (is_empty(s, stack_index)) {
         printf("The stack %d is empty.\n", stack_index);
