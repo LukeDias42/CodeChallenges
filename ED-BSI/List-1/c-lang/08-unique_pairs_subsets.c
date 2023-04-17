@@ -10,7 +10,6 @@
  * */
 
 #include <stdio.h>
-#include "stack.h"
 
 int calculate_unique_pairs(int maximum);
 

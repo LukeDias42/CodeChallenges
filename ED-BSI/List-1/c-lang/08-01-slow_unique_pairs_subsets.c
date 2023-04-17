@@ -6,7 +6,7 @@
 
 #include <stdlib.h>
 #include <stdio.h>
-#include "stack.h"
+#include <stdbool.h>
 
 int slow_calculate_unique_pairs(int num);
 
@@ -21,11 +21,19 @@ int main()
     return 0;
 }
 
+void freeMatrix(int **matrix, int amount)
+{
+    for (int i = 0; i < amount; i++)
+        free(matrix[i]);
+    free(matrix);
+}
+
 // This solution is very slow, it just iterates through every possible subsequence and adds a pair.
 int slow_calculate_unique_pairs(int num)
 {
     int max, secondMax;
-    int **pairs = (int **)malloc(sizeof(int)*num*num*num*2); 
+    int maxPairs = num*num;
+    int **pairs = (int **)malloc(sizeof(int)*maxPairs*2); 
     int pair = -1;
     for (int i = 1; i <= num; i++) {
         for (int j = i; j <= num; j++) {
@@ -44,6 +52,10 @@ int slow_calculate_unique_pairs(int num)
                 new_pair[0] = max;
                 new_pair[1] = secondMax;
                 pairs[++pair] = new_pair;
+                if (pair >= maxPairs) {
+                    freeMatrix(pairs, pair);
+                    return -1;
+                }
             }
         }
     }
@@ -67,3 +79,4 @@ int slow_calculate_unique_pairs(int num)
     free(pairs);
     return uniquePairs;
 }
+
